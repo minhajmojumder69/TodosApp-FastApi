@@ -111,7 +111,7 @@ def update_user(user: user_dependency,db : database_dependency, update_user: Use
     if user is None:
         raise HTTPException(status_code=401,detail="Failed Authentication")
 
-    user = db.query(User).filter(User.owner_id == user.get('id')).first()  
+    user = db.query(User).filter(User.id == user.get('id')).first()  
 
     updated = update_user.model_dump(exclude_unset=True)
 
@@ -128,7 +128,7 @@ def update_password(user: user_dependency,db : database_dependency, update_passw
     if user is None:
         raise HTTPException(status_code=401,detail="Failed Authentication")
 
-    user = db.query(User).filter(User.owner_id == user.get('id')).first()  
+    user = db.query(User).filter(User.id == user.get('id')).first()  
 
     if not bcrypt_context.verify(update_password.current_password, user.hash_password):
         raise HTTPException(status_code=401,detail="Wrong Password")
