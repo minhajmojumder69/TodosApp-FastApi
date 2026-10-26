@@ -8,7 +8,6 @@ from sqlalchemy.orm import Session
 from database import engine,SessionLocal
 from typing import Annotated, Optional
 from fastapi.security import OAuth2PasswordRequestForm , OAuth2PasswordBearer
-from router.auth import get_current_user
 from jose import jwt
 
 router = APIRouter()
